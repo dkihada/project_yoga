@@ -96,4 +96,49 @@ window.addEventListener('DOMContentLoaded', function () { //JS начинает 
     }
 
     setClock('timer', deadline);
+
+    // Модальное окно
+
+    let more = document.querySelector('.more'),
+        overlay = document.querySelector('.overlay'),
+        close = document.querySelector('.popup-close'),
+        details = document.querySelectorAll('div.description-btn'); // Получаем массив div'ов
+
+    for (var i = 0 ; i < details.length; i++) {
+        details[i].addEventListener('click', function() { //details[i] - перебираем полученные div'ы
+            overlay.style.display = 'block';
+            this.classList.add('more-splash');
+            document.body.style.overflow = 'hidden'; // Запрещает прокрутку страницы, пока открыто модальное окно.
+        });
+    }
+    more.addEventListener('click', function() {
+        overlay.style.display = 'block';
+        this.classList.add('more-splash');
+        document.body.style.overflow = 'hidden'; // Запрещает прокрутку страницы, пока открыто модальное окно.
+    });
+    close.addEventListener('click', function() {
+         overlay.style.display = 'none';
+         more.classList.remove('more-splash');
+         document.body.style.overflow = ''; // Отменить запрет прокрутки, после закрытия модального окна
+    });
+
+    class Options {
+        constructor(height, width, bg, fontSize, textAlign) {
+            this.height = height;
+            this.width = width;
+            this.bg = bg;
+            this.fontSize = fontSize;
+            this.textAlign = textAlign;
+        }
+        createDiv() {
+            let elem = document.createElement('div');
+            document.body.appendChild(elem);
+            let param = `height:${this.height}px; width:${this.width}px; background-color:${this.bg}; font-size:${this.fontSize}px; text-align:${this.textAlign}`;
+            elem.style.cssText = param;
+        }
+    }
+    
+    const item = new Options(300, 350, "red", 14, "center");
+    
+    item.createDiv();
 }); 
