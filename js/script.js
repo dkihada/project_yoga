@@ -327,4 +327,49 @@ window.addEventListener('DOMContentLoaded', function () { //JS начинает 
             }
         }
     });
+
+    //Calc
+
+    let persons = document.querySelectorAll('.counter-block-input')[0], // Выбрали первый интпут из двух в форме.
+        restDays = document.querySelectorAll('.counter-block-input')[1], // соответственно, выбрали втоорой инпут
+        place = document.getElementById('select'),
+        totalValue = document.getElementById('total'),
+        personsSum = 0,
+        daysSum = 0,
+        total = 0;
+        
+        totalValue.innerHTML = 0; //Заменяет значение на страницы HTML на 0
+
+        persons.addEventListener('change', function() {
+            personsSum = +this.value;
+            total = (daysSum + personsSum)*4000;
+
+            // Проверка
+            if(restDays.value == '' || persons.value == '') { //Если поле не заполненно, то возвращать только ноль, ничего не пытаться рассчитывать
+                totalValue.innerHTML = 0;
+            } else { //Если все заполненно, возвращает корректно
+                totalValue.innerHTML = total;
+            }
+        });
+
+        restDays.addEventListener('change', function() {
+            daysSum = +this.value;
+            total = (daysSum + personsSum)*4000;
+
+            // Проверка
+            if(persons.value == '' || restDays.value == '') { //Если поле не заполненно, то возвращать только ноль, ничего не пытаться рассчитывать
+                totalValue.innerHTML = 0;
+            } else { //Если все заполненно, возвращает корректно
+                totalValue.innerHTML = total;
+            }
+        });
+        
+        place.addEventListener('change', function() {
+            if (restDays.value == '' || persons.value == '') {
+                totalValue.innerHTML = 0;
+            } else {
+                let a = total;
+                totalValue.innerHTML = a * this.options[this.selectedIndex].value;
+            }
+        })     
 }); 
