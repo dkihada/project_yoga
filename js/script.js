@@ -46,7 +46,7 @@ window.addEventListener('DOMContentLoaded', function () { //JS начинает 
 
     // Таймер
 
-    let deadline = '2021-01-19';
+    let deadline = '2021-02-28';
 
     function getTimeRemaining(endtime) {
         let t = Date.parse(endtime) - Date.parse(new Date()), //Date.parse(endtime) - наш deadline, Date.parse(new Date()) - дата которая есть на данный момент, в тот момент, когда пользователь зашел на сайт.
@@ -141,4 +141,139 @@ window.addEventListener('DOMContentLoaded', function () { //JS начинает 
     const item = new Options(300, 350, "red", 14, "center");
     
     item.createDiv();
+
+    // Form
+    
+    // let message = { 
+    //     loading: 'Загрузка...',
+    //     succes: 'Спасибо, скоро мы с вами свяжемся!', //Задаем объекты (сообщения), которые будут выводится при той или иной совершенной задаче
+    //     failure: 'Что-то пошло не так...'
+    // };
+
+    // let form = document.querySelector('.main-form'), //Получаем из HTML саму форму
+    //     input = form.getElementsByTagName('input'), //Получаем из HTML инпуты формы
+    //     contact = document.getElementById('form'),
+    //     contactInput = contact.getElementsByTagName('input'),
+    //     statusMessage = document.createElement('div'); //Создаем div для вывода сообщения
+    //     statusMessage.classList.add('status'); //Добавляем класс div который создали
+
+    // form.addEventListener('submit', function (event) { //Обращение должно быть именно к ФОРМЕ, а не к кнопке или инпуту.
+    //     event.preventDefault(); //Отмена стандартного поведения браузера, благодаря ей страница не перезагружается. Но так же, не отправляет форму на сервер.
+    //     form.appendChild(statusMessage); //Добавление div при отправке, вывод выше написанных сообщений
+
+    //     let request = new XMLHttpRequest();
+    //     request.open('POST', 'server.php'); //POST - отправляет форму, GET - получает форму от сервера
+    //     request.setRequestHeader ('Content-Type', 'application/json; charset=utf-8'); //Преобразует Ключ:Значение - из формата JSON, в обычный
+
+    //     let formData = new FormData(form);
+
+    //     let obj = {};
+    //     formData.forEach(function(value, key) {
+    //         obj[key] = value;
+    //     });
+
+    //     let json = JSON.stringify(obj);
+    //     request.send(json);
+
+    //     request.addEventListener('readystatechange', function () {
+    //         if (request.readyState < 4) {
+    //             statusMessage.innerHTML = message.loading;
+    //         } else if (request.status === 4 && request.status == 200) {
+    //             statusMessage.innerHTML = message.succes;
+    //         } else {
+    //             statusMessage.innerHTML = message.failure;
+    //         }
+    //     });
+
+    //     for (let i = 0; i < input.length; i++) {
+    //         input[i].value = '';
+    //     }
+    // });
+
+    // contact.addEventListener('submit', function (event) { //Обращение должно быть именно к ФОРМЕ, а не к кнопке или инпуту.
+    //     event.preventDefault(); //Отмена стандартного поведения браузера, благодаря ей страница не перезагружается. Но так же, не отправляет форму на сервер.
+    //     contact.appendChild(statusMessage); //Добавление div при отправке, вывод выше написанных сообщений
+
+    //     let request = new XMLHttpRequest(); //API подключение для общение клиента и сервера
+    //     request.open('POST', 'server.php'); //POST - отправляет форму, GET - получает форму от сервера
+    //     request.setRequestHeader ('Content-Type', 'application/json; charset=utf-8'); //Преобразует Ключ:Значение - из формата JSON, в обычный
+
+    //     let contactData = new FormData(contact); //Получает данные из формы, внутри скобок FormData помещаем ту форму, из которой хотим получить данные ()
+
+    //     let obj = {};
+    //     contactData.forEach(function(value, key) {
+    //         obj[key] = value;
+    //     });
+
+    //     let json = JSON.stringify(obj);
+    //     request.send(json);
+
+    //     request.addEventListener('readystatechange', function () {
+    //         if (request.readyState < 4) {
+    //             statusMessage.innerHTML = message.loading;
+    //         } else if (request.status === 4 && request.status == 200) {
+    //             statusMessage.innerHTML = message.succes;
+    //         } else {
+    //             statusMessage.innerHTML = message.failure;
+    //         }
+    //     });
+
+    //     for (let i = 0; i < contactInput.length; i++) {
+    //         contactInput[i].value = '';
+    //     }
+    // });
+    
+    let message = { 
+        loading: 'Загрузка...',
+        succes: 'Спасибо, скоро мы с вами свяжемся!', //Задаем объекты (сообщения), которые будут выводится при той или иной совершенной задаче
+        failure: 'Что-то пошло не так...'
+    };
+
+    let form = document.querySelector('.main-form'), //Получаем из HTML саму форму
+        input = form.getElementsByTagName('input'), //Получаем из HTML инпуты формы
+        contact = document.getElementById('form'),
+        contactInput = contact.getElementsByTagName('input'),
+        statusMessage = document.createElement('div'); //Создаем div для вывода сообщения
+        statusMessage.classList.add('status'); //Добавляем класс div который создали
+
+    form.addEventListener('submit', function (event) { //Обращение должно быть именно к ФОРМЕ, а не к кнопке или инпуту.
+        event.preventDefault(); //Отмена стандартного поведения браузера, благодаря ей страница не перезагружается. Но так же, не отправляет форму на сервер.
+            form.appendChild(statusMessage); //Добавление div при отправке, вывод выше написанных сообщений
+            let formData = new FormData(elem);
+
+            function postData(data) {
+                return new Promise (function(resolve,reject) {
+                    let request = new XMLHttpRequest();
+                    request.open('POST', 'server.php'); //POST - отправляет форму, GET - получает форму от сервера
+                    request.setRequestHeader ('Content-Type', 'application/json; charset=utf-8'); //Преобразует Ключ:Значение - из формата JSON, в обычный
+
+                    request.onreadystatechange = function () {
+                        if (request.readyState < 4) {
+                            resolve()
+                        } else if (request.status === 4) {
+                            if (request.status == 200 && request.status < 3) {
+                                resolve()
+                            } else {
+                                reject()
+                            }
+                        }
+                    }
+                    request.send(data);
+                });
+            }
+            function clearInput () {
+                for (let i = 0; i < input.length; i++) {
+                input[i].value = '';
+                }
+            }
+            postData(formData)
+                .then(() => statusMessage.innerHTML = message.loading)
+                .then(() => {
+                    thanksModal.style.display = 'block';
+                    mainModal.style.display = 'none';
+                    statusMessage.innerHTML = '';
+                })
+                .catch(() => statusMessage.innerHTML = message.failure)
+                .then(() => clearInput)
+    }); 
 }); 
