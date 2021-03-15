@@ -3,13 +3,13 @@ window.addEventListener('DOMContentLoaded', function () { //JS начинает 
 
     // Вытаскиваем из CSS данные, для работы с ними
 
-    let tab = document.querySelectorAll('.info-header-tab'), // info-header-tab - каждый таб в отдельности
-        info = document.querySelector('.info-header'), // info-header - блок с табами
-        tabContent = document.querySelectorAll('.info-tabcontent'); //info-tabcontent - блок с содержимым каждого таба
+    let tab = document.querySelectorAll('.info-header-tab'),
+        info = document.querySelector('.info-header'),
+        tabContent = document.querySelectorAll('.info-tabcontent');
 
-        // Код, для скрытия контента
+        // Скрытие контента
 
-    function hideTabContent(a) { // (a) - это аргумент некий, который далее передается в i // hideTabContent (просто некое (любое) имя функции)
+    function hideTabContent(a) {
         for (let i = a; i < tabContent.length; i++) {
             tabContent[i].classList.remove('show'); // remove - удалить; show - класс CSS 
             tabContent[i].classList.add('hide'); // add - добавить; hide - класс CSS (display none)
@@ -18,18 +18,18 @@ window.addEventListener('DOMContentLoaded', function () { //JS начинает 
 
         // Выводим контент
 
-    hideTabContent(1); // При загрузке выводит 1 автоматически
+    hideTabContent(1); // При загрузке выводит 1-й автоматически
 
         // Показываем то, что нужно сейчас
 
     function showTabContent(b) {
-        if (tabContent[b].classList.contains('hide')) { // contains - возвращается true или false, заправшиваемый класс; hide - класс CSS
-            tabContent[b].classList.remove('hide'); // hide - класс CSS
-            tabContent[b].classList.add('show'); // show - класс CSS
+        if (tabContent[b].classList.contains('hide')) { // contains - возвращается true или false, заправшиваемый класс;
+            tabContent[b].classList.remove('hide');
+            tabContent[b].classList.add('show');
         }
     }
 
-        // Задаем команду, что будет проиходить при клике 
+        // Обработчик события (click)
 
     info.addEventListener('click', function (event) {
         let target = event.target;
@@ -144,9 +144,10 @@ window.addEventListener('DOMContentLoaded', function () { //JS начинает 
 
     // Form
     
+    // Задаем объекты (сообщения), которые будут выводится при той или иной совершенной задаче
     // let message = { 
     //     loading: 'Загрузка...',
-    //     succes: 'Спасибо, скоро мы с вами свяжемся!', //Задаем объекты (сообщения), которые будут выводится при той или иной совершенной задаче
+    //     succes: 'Спасибо, скоро мы с вами свяжемся!', 
     //     failure: 'Что-то пошло не так...'
     // };
 
@@ -191,12 +192,12 @@ window.addEventListener('DOMContentLoaded', function () { //JS начинает 
     // });
 
     // contact.addEventListener('submit', function (event) { //Обращение должно быть именно к ФОРМЕ, а не к кнопке или инпуту.
-    //     event.preventDefault(); //Отмена стандартного поведения браузера, благодаря ей страница не перезагружается. Но так же, не отправляет форму на сервер.
-    //     contact.appendChild(statusMessage); //Добавление div при отправке, вывод выше написанных сообщений
+    //     event.preventDefault(); // Отмена стандартного поведения браузера, благодаря ей страница не перезагружается. Но так же, не отправляет форму на сервер.
+    //     contact.appendChild(statusMessage); // Добавление div при отправке, вывод выше написанных сообщений
 
-    //     let request = new XMLHttpRequest(); //API подключение для общение клиента и сервера
-    //     request.open('POST', 'server.php'); //POST - отправляет форму, GET - получает форму от сервера
-    //     request.setRequestHeader ('Content-Type', 'application/json; charset=utf-8'); //Преобразует Ключ:Значение - из формата JSON, в обычный
+    //     let request = new XMLHttpRequest(); // API подключение для общение клиента и сервера
+    //     request.open('POST', 'server.php'); // POST - отправляет форму, GET - получает форму от сервера
+    //     request.setRequestHeader ('Content-Type', 'application/json; charset=utf-8'); // Преобразует Ключ:Значение - из формата JSON, в обычный
 
     //     let contactData = new FormData(contact); //Получает данные из формы, внутри скобок FormData помещаем ту форму, из которой хотим получить данные ()
 
@@ -223,9 +224,10 @@ window.addEventListener('DOMContentLoaded', function () { //JS начинает 
     //     }
     // });
     
+    // Задаем объекты (сообщения), которые будут выводится при той или иной совершенной задаче
     let message = { 
         loading: 'Загрузка...',
-        succes: 'Спасибо, скоро мы с вами свяжемся!', //Задаем объекты (сообщения), которые будут выводится при той или иной совершенной задаче
+        succes: 'Спасибо, скоро мы с вами свяжемся!', 
         failure: 'Что-то пошло не так...'
     };
 
