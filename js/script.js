@@ -46,7 +46,7 @@ window.addEventListener('DOMContentLoaded', function () { //JS начинает 
 
     // Таймер
 
-    let deadline = '2021-02-28';
+    let deadline = '2021-12-31';
 
     function getTimeRemaining(endtime) {
         let t = Date.parse(endtime) - Date.parse(new Date()), //Date.parse(endtime) - наш deadline, Date.parse(new Date()) - дата которая есть на данный момент, в тот момент, когда пользователь зашел на сайт.
@@ -137,10 +137,6 @@ window.addEventListener('DOMContentLoaded', function () { //JS начинает 
             elem.style.cssText = param;
         }
     }
-    
-    const item = new Options(300, 350, "red", 14, "center");
-    
-    item.createDiv();
 
     // Form
     
