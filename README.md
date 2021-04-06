@@ -8,3 +8,6 @@
   4. Form - 141-196 стр.
   5. Slider - 198-247 стр.
   6. Calculator - 249-293 стр.
+
+GitHub Pages:
+https://dkihada.github.io/project_yoga
